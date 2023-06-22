@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import TextTransformer from './Converter';
 import SimplePage from './TextGenerator';
 import FrontPage from './FrontPage/HeroBanner';
-import PayMobPaymentComponent from './Payment';
 
 const Header = () => {
 
@@ -35,7 +34,6 @@ const Header = () => {
               <Link to="/">Home</Link>
                 <Link to="/TextTransformer">Convert Case</Link>
                 <Link to="/DownloadSvg" >DownloadSvg</Link>
-                <Link to="/payment" >Payment</Link>
                
               </div>
             </div>
@@ -65,7 +63,6 @@ const Header = () => {
     <Route exact path="/" element={<FrontPage/>} />
     <Route path="/DownloadSvg" element={<SimplePage/>} />
     <Route path="/TextTransformer" element={<TextTransformer/>}  />
-    <Route path='/payment' element={<PayMobPaymentComponent/>} />
     
     </Routes>
     
