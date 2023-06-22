@@ -3,7 +3,8 @@ import logo from './../images/svg/logo.svg';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import TextTransformer from './Converter';
 import SimplePage from './TextGenerator';
-import FrontPage from './FrontPage/HeroBanner';
+import FrontPage from './FrontPage';
+
 
 const Header = () => {
 

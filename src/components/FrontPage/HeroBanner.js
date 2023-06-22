@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FrontPage = () => {
+const HeroBanner = () => {
   return (
     <div
       className="hero-banner bg-green-500 flex items-center justify-center"
@@ -23,4 +23,4 @@ const FrontPage = () => {
   );
 };
 
-export default FrontPage;
+export default HeroBanner;
