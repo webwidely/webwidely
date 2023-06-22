@@ -67,10 +67,6 @@ const PayMobPaymentComponent = () => {
     }
   };
 
-  const redirectToPayment = () => {
-    window.location.href = paymentUrl;
-  };
-
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-heading mb-4">PayMob Payment Component</h2>
