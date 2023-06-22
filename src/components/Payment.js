@@ -5,17 +5,19 @@ const PayMobPaymentComponent = () => {
   const [amount, setAmount] = useState(0);
   const [email, setEmail] = useState('');
   const [paymentUrl, setPaymentUrl] = useState('');
+  const [error, setError] = useState('');
 
   const handlePayment = async () => {
     try {
       // Step 1: Create an order
       const orderResponse = await axios.post(
-        'https://api.paymob.com/payments/orders',
+        'https://accept.paymob.com/api/ecommerce/orders',
         {
+          auth_token: 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TXpVNU1URXNJbTVoYldVaU9pSXhOalkzT1RnNE56YzFMak0zTlRReE55SjkuTzFKZVNENmxJVkRWR2lyanFJd1UyUzZMRnlIQW5oOVlFZy1sMUFrNGxyeFVZTnJvTjk5ajRGcm81bTBTeGVEeFFiQlRRY1Y5dDBIWm94cTBzbEZCWlE==',
+          delivery_needed: 'false',
+          merchant_order_id: '123',
           amount_cents: amount * 100,
-          currency: 'USD',
-          integration_id: 37078,
-          delivery_needed: false,
+          currency: 'EGP',
           items: [],
           shipping_data: {
             apartment: 'NA',
@@ -31,11 +33,6 @@ const PayMobPaymentComponent = () => {
             country: 'NA',
             state: 'NA',
           },
-        },
-        {
-          headers: {
-            Authorization: `Bearer 1BDED0C896164C3AD739E2DF770A426A`,
-          },
         }
       );
 
@@ -45,25 +42,25 @@ const PayMobPaymentComponent = () => {
       const paymentUrlResponse = await axios.post(
         `https://accept.paymob.com/api/acceptance/payment_keys`,
         {
-          amount_cents: amount * 100,
-          currency: 'USD',
+          auth_token: 'ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TXpVNU1URXNJbTVoYldVaU9pSXhOalkzT1RnNE56YzFMak0zTlRReE55SjkuTzFKZVNENmxJVkRWR2lyanFJd1UyUzZMRnlIQW5oOVlFZy1sMUFrNGxyeFVZTnJvTjk5ajRGcm81bTBTeGVEeFFiQlRRY1Y5dDBIWm94cTBzbEZCWlE==',
           order_id: id,
+          amount_cents: amount * 100,
+          currency: 'EGP',
+          integration_id: 37078,
           billing_data: {
             email,
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer 1BDED0C896164C3AD739E2DF770A426A`,
           },
         }
       );
 
       const { token: paymentToken } = paymentUrlResponse.data;
 
-      setPaymentUrl(`https://pakistan.paymob.com/api/acceptance/iframes/${paymentToken}`);
+      setPaymentUrl(`https://accept.paymob.com/api/acceptance/iframes/${paymentToken}`);
+      setError('');
     } catch (error) {
-      console.error('Error occurred during payment:', error);
+      console.error('Error occurred during payment:', error.message);
+      setPaymentUrl('');
+      setError('Payment failed. Please try again.');
     }
   };
 
@@ -113,6 +110,7 @@ const PayMobPaymentComponent = () => {
           </a>
         </div>
       )}
+      {error && <div className="text-red-500">{error}</div>}
     </div>
   );
 };
