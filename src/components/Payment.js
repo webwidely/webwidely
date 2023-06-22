@@ -108,9 +108,10 @@ const PayMobPaymentComponent = () => {
         <div className="mt-4">
           <h3 className="text-xl font-heading">Payment URL:</h3>
           <a
-            href="#"
+            href={paymentUrl}
             className="text-link"
-            onClick={redirectToPayment}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {paymentUrl}
           </a>
