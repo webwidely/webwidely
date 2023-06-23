@@ -1,5 +1,59 @@
 /* index.css */
+/* Default styles */
 
+/* Default Heading Style */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+/* Default List Style */
+ol, ul {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+
+/* End of default style */
 /* Heading within the description */
 
   
@@ -42,3 +96,4 @@
     fill: #fcd34d; /* Adjust the color for filled stars */
   }
   
+
