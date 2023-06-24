@@ -97,3 +97,19 @@ p {
   }
   
 
+  @keyframes pulse {
+    0% {
+      border-color: #10B981; /* Replace with your desired green shade */
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); /* Replace with your desired green shade with default opacity */
+    }
+    70% {
+      border-color: #A7F3D0; /* Replace with your desired light green shade */
+      box-shadow: 0 0 0 8px rgba(167, 243, 208, 0); /* Replace with your desired light green shade with reduced opacity */
+    }
+    100% {
+      border-color: #10B981; /* Replace with your desired green shade */
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); /* Replace with your desired green shade with reduced opacity */
+    }
+  }
+  
+

@@ -9,6 +9,7 @@ import PostList from './wordpress/posts/Posts';
 const FrontPage = () => {
   return (
    <div>
+    
     <HeroBanner/>
     <Services/>
     <Testimonials/>
