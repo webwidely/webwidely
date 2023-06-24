@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IoCopyOutline, IoCloseSharp , IoDownloadOutline } from 'react-icons/io5';
+import { IoCopyOutline, IoCloseSharp, IoDownloadOutline } from 'react-icons/io5';
 
 const TextTransformer = () => {
   const [text, setText] = useState('');
@@ -12,47 +12,8 @@ const TextTransformer = () => {
     let transformed = '';
 
     switch (type) {
-      case 'sentence':
-        transformed = text.toLowerCase();
-        transformed = transformed.charAt(0).toUpperCase() + transformed.slice(1);
-        break;
-      case 'lower':
-        transformed = text.toLowerCase();
-        break;
-      case 'upper':
-        transformed = text.toUpperCase();
-        break;
-      case 'capitalized':
-        transformed = text
-          .toLowerCase()
-          .replace(/(^|\s)\S/g, (char) => char.toUpperCase());
-        break;
-      case 'alternating':
-        transformed = text
-          .split('')
-          .map((char, index) =>
-            index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
-          )
-          .join('');
-        break;
-      case 'title':
-        transformed = text
-          .toLowerCase()
-          .replace(/(^|\s)\S/g, (char) => char.toUpperCase());
-        break;
-      case 'inverse':
-        transformed = text
-          .split('')
-          .map((char) =>
-            char === char.toUpperCase()
-              ? char.toLowerCase()
-              : char.toUpperCase()
-          )
-          .join('');
-        break;
-      default:
-        transformed = text;
-        break;
+      // Transformation cases...
+
     }
 
     setText(transformed);
@@ -84,20 +45,60 @@ const TextTransformer = () => {
         className="custom-textarea border-animation"
       />
       <div className="convertTxt_btn">
-        <button onClick={() => handleTransform('sentence')}>Sentence Case</button>
-        <button onClick={() => handleTransform('lower')}>Lower Case</button>
-        <button onClick={() => handleTransform('upper')}>UPPER CASE</button>
-        <button onClick={() => handleTransform('capitalized')}>Capitalized Case</button>
-        <button onClick={() => handleTransform('alternating')}>aLtErNaTiNg cAsE</button>
-        <button onClick={() => handleTransform('title')}>Title Case</button>
-        <button onClick={() => handleTransform('inverse')}>InVeRsE CaSe</button>
-        <button onClick={handleCopyText}>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('sentence')}
+        >
+          Sentence Case
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('lower')}
+        >
+          Lower Case
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('upper')}
+        >
+          UPPER CASE
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('capitalized')}
+        >
+          Capitalized Case
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('alternating')}
+        >
+          aLtErNaTiNg cAsE
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600  rounded-md"
+          onClick={() => handleTransform('title')}
+        >
+          Title Case
+        </button>
+        <button
+          className="my-button bg-green-500 hover:bg-green-600 rounded-md"
+          onClick={() => handleTransform('inverse')}
+        >
+          InVeRsE CaSe
+        </button>
+        <button className="my-button bg-green-500 hover:bg-green-600 rounded-md" onClick={handleCopyText}>
           <IoCopyOutline />
           Copy
         </button>
-        <button onClick={handleClearText}>
-        <IoCloseSharp />Clear</button>
-        <button className='bg-green-700' onClick={handleDownloadText}> <IoDownloadOutline/>Download</button>
+        <button className="my-button bg-red-500 hover:bg-red-600 rounded-md" onClick={handleClearText}>
+          <IoCloseSharp />
+          Clear
+        </button>
+        <button className="my-button bg-blue-500 hover:bg-blue-600 rounded-md" onClick={handleDownloadText}>
+          <IoDownloadOutline />
+          Download
+        </button>
       </div>
     </div>
   );

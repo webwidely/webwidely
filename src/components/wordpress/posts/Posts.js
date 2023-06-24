@@ -21,15 +21,15 @@ const PostList = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
-      <h2 className="text-2xl font-bold my-8">Posts</h2>
+    <div className="container mx-auto px-4 my-8">
+      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-8">Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post) => (
-          <div key={post.id} className="bg-white shadow-lg rounded-lg flex flex-col justify-between">
+          <div key={post.id} className="bg-white shadow-lg rounded-lg">
             {post._embedded && post._embedded['wp:featuredmedia'] && (
               <div style={{ maxHeight: '200px', overflow: 'hidden' }}>
                 <img
-                  src={post._embedded['wp:featuredmedia']['0'].source_url}
+                  src={post._embedded['wp:featuredmedia'][0].source_url}
                   alt={post.title.rendered}
                   className="object-cover w-full"
                 />

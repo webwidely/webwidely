@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import logo from './../images/svg/logo.svg';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import TextTransformer from './Converter';
-import SimplePage from './TextGenerator';
 import FrontPage from './FrontPage';
 import PostList from './wordpress/posts/Posts';
 import PostDetail from './wordpress/posts/PostDetail';
+import DownloadSvg from './DownloadSvg';
 
 const Navigation = ({ toggleMenu, isOpen }) => {
   return (
@@ -68,7 +68,7 @@ const RoutesComponent = () => {
   return (
     <Routes>
       <Route exact path="/" element={<FrontPage />} />
-      <Route path="/DownloadSvg" element={<SimplePage />} />
+      <Route path="/DownloadSvg" element={<DownloadSvg/>} />
       <Route path="/TextTransformer" element={<TextTransformer />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:id" element={<PostDetail />} />

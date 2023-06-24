@@ -4,7 +4,7 @@ const HeroBanner = () => {
   return (
     <div
       className="hero-banner bg-green-500 flex items-center justify-center"
-      style={{ height: '70vh' }}
+      style={{ height: '24rem' }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">

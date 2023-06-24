@@ -71,6 +71,20 @@ p {
   
 
   /* slider */
+  .slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+    background: white;
+    border-radius: 100px;
+    color: green;
+    list-style-type: none;
+}
+
 
   .testimonial-item {
     padding: 1rem;
