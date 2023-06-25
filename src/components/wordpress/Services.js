@@ -29,7 +29,7 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service._ID}
-              className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between items-start transition duration-300 hover:bg-green-500 hover:bg-opacity-10"
+              className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between items-start transition duration-300 hover:bg-green-100"
             >
               <div>
                 <div className="w-24 h-24 bg-white rounded-full shadow-lg border-2 border-green-500 mb-4 overflow-hidden">

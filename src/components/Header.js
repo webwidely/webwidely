@@ -73,7 +73,7 @@ const RoutesComponent = () => {
       <Route exact path="/" element={<FrontPage />} />
       <Route path="/DownloadSvg" element={<DownloadSvg/>} />
       <Route path="/TextTransformer" element={<TextTransformer />} />
-      <Route path="/posts" element={<PostList />} />
+      <Route path="/posts" element={<PostList numberOfPosts={9} />} />
       <Route path="/posts/:id" element={<PostDetail />} />
       <Route path="/portfolio" element={<Portfolio />} />
     </Routes>

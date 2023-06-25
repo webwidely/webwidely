@@ -16,7 +16,8 @@ const FrontPage = () => {
     <Testimonials/>
     <Portfolio/>
     <FeatureSection/>
-    <PostList/>
+    <PostList numberOfPosts={3} />
+
    </div>
   );
 };
