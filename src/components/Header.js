@@ -6,6 +6,7 @@ import FrontPage from './FrontPage';
 import PostList from './wordpress/posts/Posts';
 import PostDetail from './wordpress/posts/PostDetail';
 import DownloadSvg from './DownloadSvg';
+import Portfolio from './wordpress/Portfolio';
 
 const Navigation = ({ toggleMenu, isOpen }) => {
   return (
@@ -21,6 +22,7 @@ const Navigation = ({ toggleMenu, isOpen }) => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 main_menu">
                 <Link to="/">Home</Link>
+                <Link to="/portfolio">Portfolio</Link>
                 <Link to="/posts">Blog</Link>
                 <Link to="/TextTransformer">Convert Case</Link>
                 <Link to="/DownloadSvg">DownloadSvg</Link>
@@ -73,6 +75,7 @@ const RoutesComponent = () => {
       <Route path="/TextTransformer" element={<TextTransformer />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/:id" element={<PostDetail />} />
+      <Route path="/portfolio" element={<Portfolio />} />
     </Routes>
   );
 };
