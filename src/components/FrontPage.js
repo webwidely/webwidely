@@ -2,7 +2,7 @@ import React from 'react';
 import HeroBanner from './FrontPage/HeroBanner';
 import Services from './wordpress/Services';
 import Testimonials from './FrontPage/Testimonials';
-import FeatureSection from './FrontPage/Feature';
+import FeatureSection from './wordpress/Feature';
 import PostList from './wordpress/posts/Posts';
 
 

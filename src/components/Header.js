@@ -21,6 +21,7 @@ const Navigation = ({ toggleMenu, isOpen }) => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 main_menu">
                 <Link to="/">Home</Link>
+                <Link to="/posts">Blog</Link>
                 <Link to="/TextTransformer">Convert Case</Link>
                 <Link to="/DownloadSvg">DownloadSvg</Link>
               </div>
