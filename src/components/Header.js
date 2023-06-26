@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from './../images/svg/logo.svg';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import TextTransformer from './Converter';
-import FrontPage from './FrontPage';
-import PostList from './wordpress/posts/Posts';
-import PostDetail from './wordpress/posts/PostDetail';
-import DownloadSvg from './DownloadSvg';
-import Portfolio from './wordpress/Portfolio';
+import { Link } from 'react-router-dom';
 
 const Navigation = ({ toggleMenu, isOpen }) => {
   return (
@@ -67,31 +61,9 @@ const Navigation = ({ toggleMenu, isOpen }) => {
   );
 };
 
-const RoutesComponent = () => {
+const Header = ({ toggleMenu, isOpen }) => {
   return (
-    <Routes>
-      <Route exact path="/" element={<FrontPage />} />
-      <Route path="/DownloadSvg" element={<DownloadSvg/>} />
-      <Route path="/TextTransformer" element={<TextTransformer />} />
-      <Route path="/posts" element={<PostList numberOfPosts={9} />} />
-      <Route path="/posts/:id" element={<PostDetail />} />
-      <Route path="/portfolio" element={<Portfolio />} />
-    </Routes>
-  );
-};
-
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <Router>
-      <Navigation toggleMenu={toggleMenu} isOpen={isOpen} />
-      <RoutesComponent />
-    </Router>
+    <Navigation toggleMenu={toggleMenu} isOpen={isOpen} />
   );
 };
 

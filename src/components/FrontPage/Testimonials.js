@@ -72,7 +72,7 @@ const Testimonials = () => {
               {testimonials.map((testimonial) => (
                 <div key={testimonial._ID} className="testimonial-item">
                   <div
-                    className="testimonial-content bg-white p-5 rounded"
+                    className="testimonial-content p-5 rounded"
                     style={{
                       background: "rgba(255, 255, 255, 0.5)",
                       webkitBackdropFilter: "blur(10px)",

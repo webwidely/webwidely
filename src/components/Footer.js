@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,9 +10,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="text-white mb-4 md:mb-0">© {currentYear} webwidely | All rights reserved.</div>
           <div className="flex space-x-4">
-            <a href="googl.com" className="text-white hover:text-green-300">Terms of Service</a>
-            <a href="go.com" className="text-white hover:text-green-300">Privacy Policy</a>
-            <a href="goo.com" className="text-white hover:text-green-300">Contact Us</a>
+            <Link to="/terms" className="text-white hover:text-green-300">Terms of Service</Link>
+            <Link to="/privacy" className="text-white hover:text-green-300">Privacy Policy</Link>
+            <Link to="/contact" className="text-white hover:text-green-300">Contact Us</Link>
           </div>
         </div>
       </div>
