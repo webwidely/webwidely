@@ -9,14 +9,91 @@ const TextTransformer = () => {
   };
 
   const handleTransform = (type) => {
-    let transformed = '';
+    let transformed = text; // Initialize with the current text
 
     switch (type) {
       // Transformation cases...
-
+      case 'sentence':
+        transformed = transformToSentenceCase(text);
+        break;
+      case 'lower':
+        transformed = transformToLowercase(text);
+        break;
+      case 'upper':
+        transformed = transformToUppercase(text);
+        break;
+      case 'capitalized':
+        transformed = transformToCapitalizedCase(text);
+        break;
+      case 'alternating':
+        transformed = transformToAlternatingCase(text);
+        break;
+      case 'title':
+        transformed = transformToTitleCase(text);
+        break;
+      case 'inverse':
+        transformed = transformToInverseCase(text);
+        break;
+      default:
+        break;
     }
 
     setText(transformed);
+  };
+
+  const transformToSentenceCase = (text) => {
+    // Transformation logic for sentence case
+    return text;
+  };
+
+  const transformToLowercase = (text) => {
+    // Transformation logic for lowercase
+    return text.toLowerCase();
+  };
+
+  const transformToUppercase = (text) => {
+    // Transformation logic for uppercase
+    return text.toUpperCase();
+  };
+
+  const transformToCapitalizedCase = (text) => {
+    // Transformation logic for capitalized case
+    return text
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  const transformToAlternatingCase = (text) => {
+    // Transformation logic for alternating case
+    let transformed = '';
+    for (let i = 0; i < text.length; i++) {
+      if (i % 2 === 0) {
+        transformed += text.charAt(i).toUpperCase();
+      } else {
+        transformed += text.charAt(i).toLowerCase();
+      }
+    }
+    return transformed;
+  };
+
+  const transformToTitleCase = (text) => {
+    // Transformation logic for title case
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  const transformToInverseCase = (text) => {
+    // Transformation logic for inverse case
+    let transformed = '';
+    for (let i = 0; i < text.length; i++) {
+      const char = text.charAt(i);
+      transformed += char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+    }
+    return transformed;
   };
 
   const handleCopyText = () => {
