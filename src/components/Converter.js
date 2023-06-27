@@ -9,30 +9,29 @@ const TextTransformer = () => {
   };
 
   const handleTransform = (type) => {
-    let transformed = text; // Initialize with the current text
+    let transformed = text.toLowerCase(); // Convert text to lowercase
 
     switch (type) {
-      // Transformation cases...
       case 'sentence':
-        transformed = transformToSentenceCase(text);
+        transformed = transformToSentenceCase(transformed);
         break;
       case 'lower':
-        transformed = transformToLowercase(text);
+        transformed = transformToLowercase(transformed);
         break;
       case 'upper':
-        transformed = transformToUppercase(text);
+        transformed = transformToUppercase(transformed);
         break;
       case 'capitalized':
-        transformed = transformToCapitalizedCase(text);
+        transformed = transformToCapitalizedCase(transformed);
         break;
       case 'alternating':
-        transformed = transformToAlternatingCase(text);
+        transformed = transformToAlternatingCase(transformed);
         break;
       case 'title':
-        transformed = transformToTitleCase(text);
+        transformed = transformToTitleCase(transformed);
         break;
       case 'inverse':
-        transformed = transformToInverseCase(text);
+        transformed = transformToInverseCase(transformed);
         break;
       default:
         break;
@@ -42,22 +41,23 @@ const TextTransformer = () => {
   };
 
   const transformToSentenceCase = (text) => {
-    // Transformation logic for sentence case
-    return text;
+    const sentences = text.split('. ');
+    const transformedSentences = sentences.map((sentence) => {
+      const trimmedSentence = sentence.trim();
+      return trimmedSentence.charAt(0).toUpperCase() + trimmedSentence.slice(1);
+    });
+    return transformedSentences.join('. ');
   };
 
   const transformToLowercase = (text) => {
-    // Transformation logic for lowercase
     return text.toLowerCase();
   };
 
   const transformToUppercase = (text) => {
-    // Transformation logic for uppercase
     return text.toUpperCase();
   };
 
   const transformToCapitalizedCase = (text) => {
-    // Transformation logic for capitalized case
     return text
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -65,7 +65,6 @@ const TextTransformer = () => {
   };
 
   const transformToAlternatingCase = (text) => {
-    // Transformation logic for alternating case
     let transformed = '';
     for (let i = 0; i < text.length; i++) {
       if (i % 2 === 0) {
@@ -78,7 +77,6 @@ const TextTransformer = () => {
   };
 
   const transformToTitleCase = (text) => {
-    // Transformation logic for title case
     return text
       .toLowerCase()
       .split(' ')
@@ -87,7 +85,6 @@ const TextTransformer = () => {
   };
 
   const transformToInverseCase = (text) => {
-    // Transformation logic for inverse case
     let transformed = '';
     for (let i = 0; i < text.length; i++) {
       const char = text.charAt(i);
