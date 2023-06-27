@@ -52,9 +52,11 @@ const Navigation = ({ toggleMenu, isOpen }) => {
       {/* Mobile menu, show/hide based on menu state. */}
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 main_menu_mobile">
-          <Link to="/TextTransformer">Convert Case</Link>
-          <Link to="/DownloadSvg">DownloadSvg</Link>
-          <Link to="/JetEngineContent">JetEngineContent</Link>
+        <Link to="/">Home</Link>
+                <Link to="/portfolio">Portfolio</Link>
+                <Link to="/posts">Blog</Link>
+                <Link to="/TextTransformer">Convert Case</Link>
+                <Link to="/DownloadSvg">DownloadSvg</Link>
         </div>
       </div>
     </nav>
