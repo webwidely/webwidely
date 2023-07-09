@@ -8,6 +8,7 @@ import TextTransformer from './Converter';
 import Portfolio from './wordpress/Portfolio';
 import Terms from './wordpress/Terms';
 import NotFound from './NotFound';
+import MilkEntryForm from './MilkEntryForm';
 
 
 const RoutesComponent = () => {
@@ -20,6 +21,7 @@ const RoutesComponent = () => {
       <Route path="/posts/:id" element={<PostDetail />} />
       <Route path="/portfolio" element={<Portfolio />} />
       <Route path="/terms" element={<Terms />} />
+      <Route path="/milkentry" element={<MilkEntryForm />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
