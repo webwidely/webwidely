@@ -126,7 +126,7 @@ const MilkEntryForm = () => {
             <th className="px-4 py-2">Quantity</th>
             <th className="px-4 py-2">Price</th>
             <th className="px-4 py-2">Date</th>
-            <th className="px-4 py-2">Actions</th>
+            <th className="px-4 py-2">Delete</th>
           </tr>
         </thead>
         <tbody>
