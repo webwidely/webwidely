@@ -3,8 +3,8 @@ import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
 const MilkEntryForm = () => {
-  const [qty, setQty] = useState(2);
-  const [price, setPrice] = useState(320);
+  const [qty, setQty] = useState('2');
+  const [price, setPrice] = useState('320');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [entries, setEntries] = useState([]);
   const [message, setMessage] = useState('');
@@ -26,32 +26,43 @@ const MilkEntryForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BheS53ZWJ3aWRlbHkuY29tIiwiaWF0IjoxNjg4ODc3MzMxLCJuYmYiOjE2ODg4NzczMzEsImV4cCI6MTY4OTQ4MjEzMSwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.dBbgTXbopQyifucco1K4r3gldJqb3TYReNo4n3PtUmA';
-
+  
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BheS53ZWJ3aWRlbHkuY29tIiwiaWF0IjoxNjg4ODc3MzMxLCJuYmYiOjE2ODg4NzczMzEsImV4cCI6MTY4OTQ4MjEzMSwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.dBbgTXbopQyifucco1K4r3gldJqb3TYReNo4n3PtUmA'; // Replace with the actual valid token
+  
     const headers = {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     };
-
+  
     const data = {
       qty,
       price,
       date,
     };
-
+  
     try {
-      await axios.post('https://pay.webwidely.com/wp-json/jet-cct/milk_entry', data, { headers });
+      await axios.post('https://pay.webwidely.com/wp-json/jet-cct/milk_entry', data, {
+        headers: headers,
+      });
       fetchEntries();
-      setQty(2);
-      setPrice(320);
+      setQty('2');
+      setPrice('320');
       setDate(new Date().toISOString().split('T')[0]);
-      setMessage('Entry added successfully');
+      setMessage('Entry added successfully'); // Set success message
+  
+      setTimeout(() => {
+        setMessage(''); // Clear message after 3 seconds
+      }, 3000);
     } catch (error) {
       console.error(error);
-      setMessage('Failed to add entry');
+      setMessage('Failed to add entry'); // Set error message
+  
+      setTimeout(() => {
+        setMessage(''); // Clear message after 3 seconds
+      }, 3000);
     }
   };
+  
 
   const handleDelete = async (id) => {
     setConfirmDelete(true);
@@ -65,16 +76,25 @@ const MilkEntryForm = () => {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       };
-
+  
       await axios.delete(`https://pay.webwidely.com/wp-json/jet-cct/milk_entry/${selectedId}`, { headers });
       fetchEntries();
       setConfirmDelete(false);
-      setMessage('Entry deleted successfully');
+      setMessage('Entry deleted successfully'); // Set success message
+  
+      setTimeout(() => {
+        setMessage(''); // Clear message after 3 seconds
+      }, 3000);
     } catch (error) {
       console.error(error);
-      setMessage('Failed to delete entry');
+      setMessage('Failed to delete entry'); // Set error message
+  
+      setTimeout(() => {
+        setMessage(''); // Clear message after 3 seconds
+      }, 3000);
     }
   };
+  
 
   const cancelDelete = () => {
     setConfirmDelete(false);
@@ -96,11 +116,13 @@ const MilkEntryForm = () => {
             Quantity:
           </label>
           <input
-            type="text"
+            type="number"
             id="qty"
             value={qty}
             onChange={(e) => setQty(e.target.value)}
             className="border border-gray-300 rounded-md px-2 py-1 w-full"
+            min="0.1"
+  step="0.1"
           />
         </div>
         <div className="w-full md:w-1/3 px-2 mb-4">
@@ -108,11 +130,13 @@ const MilkEntryForm = () => {
             Price:
           </label>
           <input
-            type="text"
+            type="number"
             id="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             className="border border-gray-300 rounded-md px-2 py-1 w-full"
+            min="0"
+  step="10"
           />
         </div>
         <div className="w-full md:w-1/3 px-2 mb-4">
@@ -136,7 +160,11 @@ const MilkEntryForm = () => {
           </button>
         </div>
       </form>
-
+      {message && (
+        <div className="fixed bottom-0 right-0 bg-green-500 text-white px-4 py-2 m-4 rounded-md">
+          {message}
+        </div>
+      )}
       <table className="w-full border border-gray-300">
         <thead>
           <tr className="bg-green-500 text-white">
@@ -184,32 +212,30 @@ const MilkEntryForm = () => {
       </table>
 
       {confirmDelete && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white rounded-lg p-4">
-            <p>Are you sure you want to delete this entry?</p>
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={confirmDeleteEntry}
-                className="bg-red-500 text-white rounded-md px-4 py-2 mr-2"
-              >
-                Confirm
-              </button>
-              <button
-                onClick={cancelDelete}
-                className="bg-gray-500 text-white rounded-md px-4 py-2"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+    <div className="bg-white rounded-lg p-4">
+      <p className="text-center">Are you sure you want to delete this entry?</p>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={confirmDeleteEntry}
+          className="bg-red-500 text-white rounded-md px-4 py-2 mr-2"
+        >
+          Confirm
+        </button>
+        <button
+          onClick={cancelDelete}
+          className="bg-gray-500 text-white rounded-md px-4 py-2"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
-      {message && (
-        <div className="fixed bottom-0 right-0 bg-green-500 text-white px-4 py-2 m-4 rounded-md">
-          {message}
-        </div>
-      )}
+
+
+     
     </div>
   );
 };
