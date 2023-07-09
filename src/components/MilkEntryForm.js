@@ -7,6 +7,9 @@ const MilkEntryForm = () => {
   const [price, setPrice] = useState(320);
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [entries, setEntries] = useState([]);
+  const [message, setMessage] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
     fetchEntries();
@@ -43,25 +46,39 @@ const MilkEntryForm = () => {
       setQty(2);
       setPrice(320);
       setDate(new Date().toISOString().split('T')[0]);
+      setMessage('Entry added successfully');
     } catch (error) {
       console.error(error);
+      setMessage('Failed to add entry');
     }
   };
 
   const handleDelete = async (id) => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BheS53ZWJ3aWRlbHkuY29tIiwiaWF0IjoxNjg4ODg0NDM3LCJuYmYiOjE2ODg4ODQ0MzcsImV4cCI6MTY4OTQ4OTIzNywiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.i30wkUBCZ9cz2ZmdhmPbfUyvtDwwCbdiKUVGpKZglIo';
+    setConfirmDelete(true);
+    setSelectedId(id);
+  };
 
-    const headers = {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    };
-
+  const confirmDeleteEntry = async () => {
     try {
-      await axios.delete(`https://pay.webwidely.com/wp-json/jet-cct/milk_entry/${id}`, { headers });
+      const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BheS53ZWJ3aWRlbHkuY29tIiwiaWF0IjoxNjg4ODg0NDM3LCJuYmYiOjE2ODg4ODQ0MzcsImV4cCI6MTY4OTQ4OTIzNywiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.i30wkUBCZ9cz2ZmdhmPbfUyvtDwwCbdiKUVGpKZglIo';
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      };
+
+      await axios.delete(`https://pay.webwidely.com/wp-json/jet-cct/milk_entry/${selectedId}`, { headers });
       fetchEntries();
+      setConfirmDelete(false);
+      setMessage('Entry deleted successfully');
     } catch (error) {
       console.error(error);
+      setMessage('Failed to delete entry');
     }
+  };
+
+  const cancelDelete = () => {
+    setConfirmDelete(false);
+    setSelectedId('');
   };
 
   const calculateTotal = () => {
@@ -157,7 +174,7 @@ const MilkEntryForm = () => {
         <tfoot>
           <tr className="bg-green-500 text-white">
             <td className="px-4 py-2 text-center">{calculateTotal().totalQty}</td>
-            <td className="px-4 py-2 text-center" colSpan="2">
+            <td className="px-4 py-2 " colSpan="2">
               <strong>Total Price: </strong>
               {calculateTotal().totalPrice}
             </td>
@@ -165,6 +182,34 @@ const MilkEntryForm = () => {
           </tr>
         </tfoot>
       </table>
+
+      {confirmDelete && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+          <div className="bg-white rounded-lg p-4">
+            <p>Are you sure you want to delete this entry?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={confirmDeleteEntry}
+                className="bg-red-500 text-white rounded-md px-4 py-2 mr-2"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={cancelDelete}
+                className="bg-gray-500 text-white rounded-md px-4 py-2"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {message && (
+        <div className="fixed bottom-0 right-0 bg-green-500 text-white px-4 py-2 m-4 rounded-md">
+          {message}
+        </div>
+      )}
     </div>
   );
 };
